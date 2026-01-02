@@ -1,4 +1,5 @@
 import type { Job } from "../types/jobs";
+import { memo } from 'react';
 
 interface JobCardProps {
   job:Job
@@ -18,4 +19,4 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
   );
 };
 
-export default JobCard
+export default memo(JobCard)
