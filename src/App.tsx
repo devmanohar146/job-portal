@@ -5,20 +5,19 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Jobs from '../src/pages/Jobs.tsx'
 import Login from "../src/pages/Login.tsx"
 import ProtectedRoute from "../src/components/ProtectedRoute.tsx"
+import ProtectedLayout from './components/ProtectedLayout.tsx';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 min-h-screen bg-gray-100">
-        <Navbar />
+    
         <Routes>
           <Route  path='/login' element={<Login/>}/>
-          <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path='/jobs' element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
+          <Route element={<ProtectedRoute><ProtectedLayout /></ProtectedRoute>}>
+          <Route index element={<Dashboard />} />
+          <Route path='jobs' element={<Jobs />} />
+          </Route>
         </Routes>
-      </div>
-    </div>
+
     </BrowserRouter>
   );
 };
